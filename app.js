@@ -20,6 +20,10 @@ questionsInsolite.push(["questtryon", "rep1", "test", "rehdgf3", "test", "C"]);
 
 var questionsCultureG = [];
 questionsCultureG.push(["question culture ? ","Rep1","Rep2","Rep3","Rep4","A"]);
+questionsCultureG.push(["question2 culture1 ","Rep1","Rep2","Rep3","Rep4","C"]);
+questionsCultureG.push(["question culture1 ","Rep1","Rep2","Rep3","Rep4","C"]);
+questionsCultureG.push(["question culture1 ","Rep1","Rep2","Rep3","Rep4","C"]);
+questionsCultureG.push(["question culture1 ","Rep1","Rep2","Rep3","Rep4","C"]);
 questionsCultureG.push(["question culture1 ","Rep1","Rep2","Rep3","Rep4","C"]);
 
 console.log(questionsInsolite);
@@ -45,11 +49,11 @@ function start(themeChoice) {
 function nextQuestion(themeChoice) {
   turn++;
 
-  document.getElementById("question").innerHTML = themeChoice[turn][1];
-  document.getElementById("repA").innerHTML = themeChoice[turn][2];
-  document.getElementById("repB").innerHTML = themeChoice[turn][3];
-  document.getElementById("repC").innerHTML = themeChoice[turn][4];
-  document.getElementById("repD").innerHTML = themeChoice[turn][5];
+  document.getElementById("question").innerHTML = themeChoice[turn.valueOf()][0];
+  document.getElementById("repA").innerHTML = themeChoice[turn.valueOf()][1];
+  document.getElementById("repB").innerHTML = themeChoice[turn.valueOf()][2];
+  document.getElementById("repC").innerHTML = themeChoice[turn.valueOf()][3];
+  document.getElementById("repD").innerHTML = themeChoice[turn.valueOf()][4];
 
   document.getElementById("A").className = "repBtn-A";
   document.getElementById("B").className = "repBtn-B";
@@ -128,6 +132,13 @@ function answer(themeChoice) {
   } else {
     document.getElementById("img-principale").innerHTML = '<img src="https://media3.giphy.com/media/2WxWfiavndgcM/giphy.gif" alt="gif yes">';
     document.getElementById("question").innerHTML = "Perdu !";
+    document.getElementById('culture-g-btn').onclick=function(){cultureG();};
+    document.getElementById('insolite-btn').onclick=function(){insolite();};
+    document.getElementById("insolite-btn").className = "theme";
+    document.getElementById("culture-g-btn").className = "theme";
+    turn=0;
+    themeChoice = null;
+
 
     switch (correct) {
       case "A" :
