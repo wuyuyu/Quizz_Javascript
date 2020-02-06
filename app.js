@@ -6,7 +6,6 @@ var userChoice;
 var correct;
 var entry = document.getElementById('data').value;
 var tableScore = []; //table de scores des derniers joueurs
-var argentRecolte = 0;
 var jokerUsed = false;
 const musiqueTime = new Audio("sounds/question.mp3");
 
@@ -129,6 +128,9 @@ function answer(themeChoice) {
         document.getElementById("D").className = "green";
         break;
     }
+    turn++;
+    document.getElementById("nb-question").innerHTML = turn;
+    argent();
   } else {
     document.getElementById("img-principale").innerHTML = '<img src="https://media3.giphy.com/media/2WxWfiavndgcM/giphy.gif" alt="gif yes">';
     document.getElementById("question").innerHTML = "Perdu !";
@@ -136,10 +138,7 @@ function answer(themeChoice) {
     document.getElementById('insolite-btn').onclick=function(){insolite();};
     document.getElementById("insolite-btn").className = "theme";
     document.getElementById("culture-g-btn").className = "theme";
-    turn=0;
     themeChoice = null;
-
-
     switch (correct) {
       case "A" :
         document.getElementById("A").className = "green";
@@ -164,12 +163,12 @@ function answer(themeChoice) {
     turn = 0;
   }
   answerDisabled();
-  turn++;
 }
 
 function displayName() {
   entry = document.getElementById('data').value;
   document.getElementById("name").innerHTML=entry;
+  turn = 0;
 }
 
 function insolite() {
@@ -231,6 +230,7 @@ function displayScore() {
 
 function argent() {
   let i;
+  let argentRecolte = 0;
   for (i = 0; i < turn; i++) {
     argentRecolte = (argentRecolte + (i + 1));
   }
