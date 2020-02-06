@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css"/>
+    <script src="https://kit.fontawesome.com/aa1f9c66ba.js" crossorigin="anonymous"></script>
+    <title>CODING DOJO</title>
+</head>
+<body>
+
+    <div class="container-principal">
+
+        <div class="menu-infos">
+            <div class="espace-logo">
+                <img src="imgs/logo2.png" alt="logo">
+            </div>
+            <div class="espace-nom">
+                <form>
+                    <input id="data" type="text" value="votre nom" />
+                    <input id="submit-btn" type="button" value="Ok" onclick="displayName()"/>
+                </form>
+                <p>Bienvenue</p>
+                <p id="name"></p>
+            </div>
+
+            <div class="espace-themes">
+                <p>Choisissez votre thème :</p>
+                <button id="isolite-btn" class="theme">Insolite</button>
+                <button id="culture-g-btn" class="theme">Culture générale</button>
+            </div>
+
+            <div class="espace-scores">
+                <div>
+                    <p>Question n°</p>
+                    <p id="nb-question"></p>
+                </div>
+                <div>
+                    <p>Argent récolté :</p>
+                    <p id="nb-argent"></p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="plateau-jeu">
+
+            <!--<div class="titre">
+                <p>Qui veut gagner des fonctions() ?</p>
+            </div>-->
+
+            <div class="image-presentateur">
+                <img src="imgs/jpf.jpg" alt="Jean-Pierre Foucault">
+            </div>
+
+            <div class="question">
+                <p>Quel est l'âge d'Arielle Dombasle ?</p>
+            </div>
+
+            <div class="espace-réponses">
+                <button class="rep-btn">
+                    <p class="abcd">A :</p>
+                    <p id="reponse1">113 ans</p>
+                </button>
+                <button class="rep-btn">
+                    <p class="abcd">B :</p>
+                    <p id="reponse2">Personne ne le sait</p>
+                </button>
+                <button class="rep-btn">
+                    <p class="abcd">C :</p>
+                    <p id="reponse3">66 ans</p>
+                </button>
+                <button class="rep-btn">
+                    <p class="abcd">D :</p>
+                    <p id="reponse4">La réponse D</p>
+                </button>
+            </div>
+
+            <div class="espace-btn">
+                <button class="time">15 <i class="fas fa-hourglass-half"></i></button>
+                <button id="joker-btn" class="joker" onclick="joker();"><i class="fas fa-phone"></i></button>
+                <button class="jouer">Jouer</button>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+  <footer>
+      <p class="footer-text">"Coding Dojo" by Ivann, Bryan, Yuyuan<p>
+  </footer>
+
+</body>
+<script src="app.js"></script>
+</html>
