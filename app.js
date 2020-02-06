@@ -26,6 +26,11 @@ function start(themeChoice) {
   document.getElementById("repB").innerHTML = themeChoice[0][2];
   document.getElementById("repC").innerHTML = themeChoice[0][3];
   document.getElementById("repD").innerHTML = themeChoice[0][4];
+
+  document.getElementById("A").className = "repBtn-A";
+  document.getElementById("B").className = "repBtn-B";
+  document.getElementById("C").className = "repBtn-C";
+  document.getElementById("D").className = "repBtn-D";
 }
 
 
@@ -57,11 +62,13 @@ function answer(themeChoice) {
     tableScore.push([entry,score]);
 
   } else {
+    document.getElementById("img-principale").innerHTML = '<img src="https://media3.giphy.com/media/2WxWfiavndgcM/giphy.gif" alt="gif yes">';
     document.getElementById("question").innerHTML = "Perdu !";
+    document.getElementById("play-btn").innerHTML = "Rejouer !";
     tableScore.push([entry,score]);
-    console.log("perdu");
     displayScore();
 
+  }
     switch (correct) {
       case "A" :
         document.getElementById("A").className = "green";
@@ -75,30 +82,26 @@ function answer(themeChoice) {
       case "D" :
         document.getElementById("D").className = "green";
         break;
-    }
   }
-
   turn++;
 }
 
 function displayName() {
   entry = document.getElementById('data').value;
   document.getElementById("name").innerHTML=entry;
-  console.log(entry);
 }
 
 function insolite() {
   themeChoice = questionsInsolite;
-  console.log(themeChoice);
 }
 
 function cultureG() {
   themeChoice = questionsCultureG;
-  console.log(themeChoice);
-
 }
 
 function timer() {
+  var musique = new Audio("sounds/question.mp3");
+  musique.play();
   timeLeft = 15;
   clearInterval(myTimer);
   myTimer = setInterval(function(){
@@ -108,6 +111,7 @@ function timer() {
     if(timeLeft < 0 ){
       clearInterval(myTimer);
       document.getElementById("time-btn").innerHTML = "Fini !";
+      musique.pause();
     }
   }, 1000);
 }

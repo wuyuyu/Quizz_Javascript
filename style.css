@@ -135,7 +135,8 @@ body {
 }
 
 .image-presentateur img {
-    width: 700px;
+    height: 239px;
+    max-width: 700px;
     border: 1px solid #ffffff;
 }
 
