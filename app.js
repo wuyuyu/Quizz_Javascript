@@ -5,6 +5,7 @@ var turn = 0;
 var userChoice;
 var correct;
 var entry;
+var jokerUsed = false;
 
 var questionsInsolite = [];
 questionsInsolite.push(["Quel est l'âge d'Arielle Dombasle ?", "113 ans", "Personne ne le sait", "66 ans", "La réponse D", "C"]);
@@ -28,8 +29,35 @@ function start(themeChoice) {
   document.getElementById("B").className = "repBtn-B";
   document.getElementById("C").className = "repBtn-C";
   document.getElementById("D").className = "repBtn-D";
+
+  document.getElementById("joker-btn").innerHTML='<i class="fas fa-phone"></i>';
+  jokerUsed = false;
 }
 
+function joker() {
+  correct = themeChoice[turn][5];
+
+  document.getElementById("joker-btn").innerHTML='<i class="fas fa-phone-slash"></i>';
+  jokerUsed = true;
+  document.getElementById("question").innerHTML = "Correct !";
+  document.getElementById("img-principale").innerHTML = '<img src="https://media1.tenor.com/images/c999da20a6b3f9278cfc059c4313ed32/tenor.gif?itemid=14294403" alt="gif yes">';
+
+  switch (correct) {
+    case "A" :
+      document.getElementById("A").className = "green";
+      break;
+    case "B" :
+      document.getElementById("B").className = "green";
+      break;
+    case "C" :
+      document.getElementById("C").className = "green";
+      break;
+    case "D" :
+      document.getElementById("D").className = "green";
+      break;
+  }
+  turn++;
+}
 
 function clickChoiceA() {
   userChoice = "A";
@@ -49,10 +77,8 @@ function clickChoiceD() {
 
 function answer(themeChoice) {
   correct = themeChoice[turn][5];
-  console.log("user :" + userChoice);
-  console.log("bonne rep " + correct);
 
-  if (userChoice === correct) {
+  if (userChoice === correct || jokerUsed === true) {
     document.getElementById("question").innerHTML = "Correct !";
     document.getElementById("img-principale").innerHTML = '<img src="https://media1.tenor.com/images/c999da20a6b3f9278cfc059c4313ed32/tenor.gif?itemid=14294403" alt="gif yes">';
   } else {
@@ -105,8 +131,4 @@ function timer() {
       musique.pause();
     }
   }, 1000);
-}
-
-function joker() {
-  document.getElementById("joker-btn").innerHTML='<i class="fas fa-phone-slash"></i>';
 }
