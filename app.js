@@ -142,7 +142,7 @@ function displayScore(){
 function argent(){
   let i = 0;
   if(i < score){
-    argentRecolte = (i + (i+1));
+    argentRecolte = (argentRecolte + (i+1));
     i++;
   }
   argentRecolte = argentRecolte * 100;
