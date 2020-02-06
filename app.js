@@ -23,6 +23,23 @@ function start(themeChoice) {
   document.getElementById("repB").innerHTML = themeChoice[0][2];
   document.getElementById("repC").innerHTML = themeChoice[0][3];
   document.getElementById("repD").innerHTML = themeChoice[0][4];
+  turn = 0;
+
+}
+function questionSuivante(themeChoice){
+
+  if(userChoice == correct){ 
+  document.getElementById("question").innerHTML = themeChoice[turn][0];
+  document.getElementById("repA").innerHTML = themeChoice[turn][1];
+  document.getElementById("repB").innerHTML = themeChoice[turn][2];
+  document.getElementById("repC").innerHTML = themeChoice[turn][3];
+  document.getElementById("repD").innerHTML = themeChoice[turn][4];
+  document.getElementById("A").className = "repBtn-A";
+  document.getElementById("B").className = "repBtn-B";
+  document.getElementById("C").className = "repBtn-C";
+  document.getElementById("D").className = "repBtn-D";
+}
+
 }
 
 
@@ -51,7 +68,8 @@ function answer(themeChoice) {
     document.getElementById("question").innerHTML = "Correct !";
     document.getElementById("img-principale").innerHTML = '<img src="https://media1.tenor.com/images/c999da20a6b3f9278cfc059c4313ed32/tenor.gif?itemid=14294403" alt="gif yes">';
   } else {
-    document.getElementById("question").innerHTML = "Perdu !";
+    youLoose();
+  }
 
     switch (correct) {
       case "A" :
@@ -66,7 +84,9 @@ function answer(themeChoice) {
       case "D" :
         document.getElementById("D").className = "green";
         break;
-    }
+
+
+    
   }
 
   turn++;
@@ -89,6 +109,21 @@ function cultureG() {
 
 }
 
+
+
+function youLoose() {
+  
+  document.getElementById("question").innerHTML = "Perdu !";
+  document.getElementById("repA").innerHTML = "";
+  document.getElementById("repB").innerHTML = "";
+  document.getElementById("repC").innerHTML = "";
+  document.getElementById("repD").innerHTML = "";
+  turn=0;
+  
+  
+}
+
+
 function timer() {
   timeLeft = 15;
   clearInterval(myTimer);
@@ -99,6 +134,8 @@ function timer() {
     if(timeLeft < 0 ){
       clearInterval(myTimer);
       document.getElementById("time-btn").innerHTML = "Fini !";
+      start();
+      
     }
   }, 1000);
 }
