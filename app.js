@@ -32,6 +32,23 @@ function start(themeChoice) {
   document.getElementById("B").className = "repBtn-B";
   document.getElementById("C").className = "repBtn-C";
   document.getElementById("D").className = "repBtn-D";
+  turn = 0;
+
+}
+function questionSuivante(themeChoice){
+
+  if(userChoice == correct){ 
+  document.getElementById("question").innerHTML = themeChoice[turn][0];
+  document.getElementById("repA").innerHTML = themeChoice[turn][1];
+  document.getElementById("repB").innerHTML = themeChoice[turn][2];
+  document.getElementById("repC").innerHTML = themeChoice[turn][3];
+  document.getElementById("repD").innerHTML = themeChoice[turn][4];
+  document.getElementById("A").className = "repBtn-A";
+  document.getElementById("B").className = "repBtn-B";
+  document.getElementById("C").className = "repBtn-C";
+  document.getElementById("D").className = "repBtn-D";
+}
+
 }
 
 
@@ -46,6 +63,7 @@ function clickChoiceB() {
 function clickChoiceC() {
   userChoice = "C";
 }
+
 
 function clickChoiceD() {
   userChoice = "D";
@@ -65,7 +83,7 @@ function answer(themeChoice) {
     document.getElementById("img-principale").innerHTML = '<img src="https://media3.giphy.com/media/2WxWfiavndgcM/giphy.gif" alt="gif yes">';
     document.getElementById("question").innerHTML = "Perdu !";
     document.getElementById("play-btn").innerHTML = "Rejouer !";
-    if (tableScore.length == 5) {
+    if (tableScore.length == 3) {
       tableScore.shift();
     }
     tableScore.push([entry,score]);
@@ -85,6 +103,9 @@ function answer(themeChoice) {
       case "D" :
         document.getElementById("D").className = "green";
         break;
+
+
+    
   }
   turn++;
 }
@@ -102,6 +123,21 @@ function cultureG() {
   themeChoice = questionsCultureG;
 }
 
+
+
+function youLoose() {
+  
+  document.getElementById("question").innerHTML = "Perdu !";
+  document.getElementById("repA").innerHTML = "";
+  document.getElementById("repB").innerHTML = "";
+  document.getElementById("repC").innerHTML = "";
+  document.getElementById("repD").innerHTML = "";
+  turn=0;
+  
+  
+}
+
+
 function timer() {
   var musique = new Audio("sounds/question.mp3");
   musique.play();
@@ -115,9 +151,11 @@ function timer() {
       clearInterval(myTimer);
       document.getElementById("time-btn").innerHTML = "Fini !";
       musique.pause();
-      if (tableScore.length == 5) {
+      if (tableScore.length == 3) {
       tableScore.shift();
       }
+      start();
+      
     }
   }, 1000);
 }
