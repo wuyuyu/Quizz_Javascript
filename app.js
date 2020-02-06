@@ -100,6 +100,7 @@ function answer(themeChoice) {
     }
     tableScore.push([entry,score]);
     displayScore();
+    argent();
 
   }
     switch (correct) {
@@ -190,13 +191,14 @@ function displayScore(){
 }
 
 function argent(){
+  console.log("fonction argent");
   let i = 0;
   if(i < score){
     argentRecolte = (argentRecolte + (i+1));
     i++;
   }
   argentRecolte = argentRecolte * 100;
-  document.getElementById("nb-argent").innerHTML = argentRecolte;
+  document.getElementById("nb-argent").innerHTML = argentRecolte + " €";
   
 }
 
