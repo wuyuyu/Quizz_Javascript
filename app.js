@@ -199,6 +199,10 @@ function timer() {
       document.getElementById("time-btn").innerHTML = "Fini !";
       musiqueTime.pause();
     }
+    if(timeLeft < 0 ){
+      clearInterval(myTimer);
+      document.getElementById("time-btn").innerHTML = "Fini !";
+    }
   }, 1000);
 }
 
