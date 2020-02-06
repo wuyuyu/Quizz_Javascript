@@ -2,6 +2,8 @@ var myTimer;
 var timeLeft;
 var themeChoice = [];
 var turn = 0;
+var userChoice;
+var correct;
 
 
 var questionsInsolite = [];
@@ -17,13 +19,57 @@ console.log(questionsInsolite[0][1]);
 
 function start(themeChoice) {
   document.getElementById("question").innerHTML = themeChoice[0][0];
-  document.getElementById("reponse1").innerHTML = themeChoice[0][1];
-  document.getElementById("reponse2").innerHTML = themeChoice[0][2];
-  document.getElementById("reponse3").innerHTML = themeChoice[0][3];
-  document.getElementById("reponse4").innerHTML = themeChoice[0][4];
+  document.getElementById("repA").innerHTML = themeChoice[0][1];
+  document.getElementById("repB").innerHTML = themeChoice[0][2];
+  document.getElementById("repC").innerHTML = themeChoice[0][3];
+  document.getElementById("repD").innerHTML = themeChoice[0][4];
 }
 
+function clickChoiceA() {
+  userChoice = "A";
+}
 
+function clickChoiceB() {
+  userChoice = "B";
+}
+
+function clickChoiceC() {
+  userChoice = "C";
+}
+
+function clickChoiceD() {
+  userChoice = "D";
+}
+
+function answer(themeChoice) {
+  correct = themeChoice[turn][5];
+  console.log("user :" + userChoice);
+  console.log("bonne rep " + correct);
+
+  if (userChoice === correct) {
+    document.getElementById("question").innerHTML = "Correct !";
+  } else {
+    document.getElementById("question").innerHTML = "Perdu !";
+    document.getElementById("C").color = "green";
+  }
+
+  switch (correct) {
+    case "A" :
+
+      break;
+    case "B" :
+
+      break;
+    case "C" :
+
+      break;
+    case "D" :
+
+      break;
+  }
+
+  turn++;
+}
 
 function insolite() {
   themeChoice = questionsInsolite;

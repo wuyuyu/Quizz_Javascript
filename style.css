@@ -183,6 +183,10 @@ body {
     outline: 0;
 }
 
+.green {
+    background-color: green;
+}
+
 .rep-btn:hover {
     background-color: #02000a;
 }
@@ -198,7 +202,7 @@ body {
     margin-right: 3px;
 }
 
-#reponse1, #reponse2, #reponse3, #reponse4 {
+#repA, #repB, #repC, #repD {
     color: white;
     font-size: 18px;
 }
