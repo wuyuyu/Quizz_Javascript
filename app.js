@@ -13,7 +13,7 @@ const musiqueTime = new Audio("sounds/question.mp3");
 var questionsInsolite = [];
 questionsInsolite.push(["Quel est l'âge d'Arielle Dombasle ?", "113 ans", "Personne ne le sait", "66 ans", "La réponse D", "C"]);
 questionsInsolite.push(["Quel est l'aliment le plus drôle ?", "La pasthèque", "la saucisson", "Le miel", "Le riz", "D"]);
-questionsInsolite.push(["question", "rep1", "test", "rep3", "test", "C"]);
+questionsInsolite.push(["question3 insolite", "rep1", "test", "rep3", "test", "C"]);
 questionsInsolite.push(["question", "rtd", "fhgdft", "rep3", "test", "C"]);
 questionsInsolite.push(["question", "rep1", "test", "rep3", "test", "C"]);
 questionsInsolite.push(["questtryon", "rep1", "test", "rehdgf3", "test", "C"]);
@@ -30,6 +30,7 @@ console.log(questionsInsolite);
 console.log(questionsInsolite[0][1]);
 
 function start(themeChoice) {
+  answerEnabled();
   document.getElementById("question").innerHTML = themeChoice[0][0];
   document.getElementById("repA").innerHTML = themeChoice[0][1];
   document.getElementById("repB").innerHTML = themeChoice[0][2];
@@ -40,14 +41,13 @@ function start(themeChoice) {
   document.getElementById("B").className = "repBtn-B";
   document.getElementById("C").className = "repBtn-C";
   document.getElementById("D").className = "repBtn-D";
-  turn = 0;
 
   document.getElementById("joker-btn").innerHTML='<i class="fas fa-phone"></i>';
   jokerUsed = false;
 }
 
 function nextQuestion(themeChoice) {
-  turn++;
+  console.log(themeChoice);
 
   document.getElementById("question").innerHTML = themeChoice[turn.valueOf()][0];
   document.getElementById("repA").innerHTML = themeChoice[turn.valueOf()][1];
@@ -64,7 +64,7 @@ function nextQuestion(themeChoice) {
 }
 
 function joker() {
-
+  stopTimer(myTimer);
   document.getElementById("joker-btn").innerHTML = '<i class="fas fa-phone-slash"></i>';
   document.getElementById("question").innerHTML = "Correct !";
   document.getElementById("img-principale").innerHTML = '<img src="https://media1.tenor.com/images/c999da20a6b3f9278cfc059c4313ed32/tenor.gif?itemid=14294403" alt="gif yes">';
@@ -176,12 +176,14 @@ function insolite() {
   themeChoice = questionsInsolite;
   document.getElementById("insolite-btn").className = "theme-selected";
   document.getElementById('culture-g-btn').onclick=function(){clickDisabled();};
+  answerDisabled();
 }
 
 function cultureG() {
   themeChoice = questionsCultureG;
   document.getElementById("culture-g-btn").className = "theme-selected";
   document.getElementById('insolite-btn').onclick=function(){clickDisabled();};
+  answerDisabled();
 }
 
 function timer() {
