@@ -61,26 +61,26 @@
             </div>
 
             <div class="espace-réponses">
-                <button id="A" class="repBtn-A" onclick="clickChoiceA(); stopTimer(myTimer); answer(themeChoice);">
+                <button id="A" class="repBtn-A" onclick="answer(themeChoice); clickChoiceA(); stopTimer(myTimer);">
                     <p class="abcd">A :</p>
                     <p id="repA"></p>
                 </button>
-                <button id="B" class="repBtn-B" onclick="clickChoiceA(); stopTimer(myTimer); answer(themeChoice);">
+                <button id="B" class="repBtn-B" onclick="answer(themeChoice); clickChoiceA(); stopTimer(myTimer);">
                     <p class="abcd">B :</p>
                     <p id="repB"></p>
                 </button>
-                <button id="C" class="repBtn-C" onclick="clickChoiceC(); stopTimer(myTimer); answer(themeChoice);">
+                <button id="C" class="repBtn-C" onclick="answer(themeChoice); clickChoiceC(); stopTimer(myTimer);">
                     <p class="abcd">C :</p>
                     <p id="repC"></p>
                 </button>
-                <button id="D" class="repBtn-D" onclick="clickChoiceD(); stopTimer(myTimer); answer(themeChoice);">
+                <button id="D" class="repBtn-D" onclick="answer(themeChoice); clickChoiceD(); stopTimer(myTimer);">
                     <p class="abcd">D :</p>
                     <p id="repD"></p>
                 </button>
             </div>
 
             <div class="espace-btn">
-                <button id="time-btn" class="time"><i class="fas fa-hourglass-half"></i> 15</button>
+                <button id="time-btn" class="time"><i class="fas fa-hourglass-half"></i> 10</button>
                 <button id="joker-btn" class="joker" onclick="joker();"><i class="fas fa-phone"></i></button>
                 <button id="play-btn" class="jouer" onclick="start(themeChoice); timer();">Jouer</button>
                 <button id="next-btn" class="jouer" onclick="nextQuestion(themeChoice); timer();">Question suivante</button>

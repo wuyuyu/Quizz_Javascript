@@ -9,27 +9,27 @@ var tableScore = []; //table de scores des derniers joueurs
 var argentRecolte = 0;
 var jokerUsed = false;
 const musiqueTime = new Audio("sounds/question.mp3");
+var questionNb = 0;
 
 var questionsInsolite = [];
 questionsInsolite.push(["Quel est l'âge d'Arielle Dombasle ?", "113 ans", "Personne ne le sait", "66 ans", "La réponse D", "C"]);
+questionsInsolite.push(["Quelle note ce projet métite-t-il ?", "20/20", "20/20", "20/20", "20/20","D"]);
 questionsInsolite.push(["Quel est l'aliment le plus drôle ?", "La pasthèque", "la saucisson", "Le miel", "Le riz", "D"]);
-questionsInsolite.push(["question3 insolite", "rep1", "test", "rep3", "test", "C"]);
-questionsInsolite.push(["question", "rtd", "fhgdft", "rep3", "test", "C"]);
-questionsInsolite.push(["question", "rep1", "test", "rep3", "test", "C"]);
-questionsInsolite.push(["questtryon", "rep1", "test", "rehdgf3", "test", "C"]);
+questionsInsolite.push(["Qu’est-ce qui est jaune et qui attend ?", "Jonathan", "John attend !", "Une banane", "kim jong un", "A"]);
+questionsInsolite.push(["Quel est le vrai prénom de Chuck Norris ?", "Chuck", "Norris", "Dieu", "Carlos", "D"]);
 
 var questionsCultureG = [];
-questionsCultureG.push(["question culture ? ","Rep1","Rep2","Rep3","Rep4","A"]);
-questionsCultureG.push(["question2 culture1 ","Rep1","Rep2","Rep3","Rep4","C"]);
-questionsCultureG.push(["question culture1 ","Rep1","Rep2","Rep3","Rep4","C"]);
-questionsCultureG.push(["question culture1 ","Rep1","Rep2","Rep3","Rep4","C"]);
-questionsCultureG.push(["question culture1 ","Rep1","Rep2","Rep3","Rep4","C"]);
-questionsCultureG.push(["question culture1 ","Rep1","Rep2","Rep3","Rep4","C"]);
+questionsCultureG.push(["Quelle invention est la plus ancienne ?", "La dynamite", "Les allumettes", "Le briquet", "L'ampoule électrique", "C"]);
+questionsCultureG.push(["Quel est le plus puissant muscle ? ","La langue","Le fessier","Le dorsal","Hum hum ...","B"]);
+questionsCultureG.push(["La taille du + grand homme du monde : ","2,32 mètres","2,76 mètres","3,02 mètres","2,48 mètres","B"]);
+questionsCultureG.push(["Ce qui occupe 6 mois de notre vie : ","Attendre au feu rouge","Passer le balai","Bailler","Etre aux toilettes","A"]);
+questionsCultureG.push(["Un gardien de nuit meurt le jour. Touche t-il une pension ? ","Oui" ,"S'il meurt de nuit uniquement","Pas de pension aux gardiens","Non, il est mort","D"]);
 
 console.log(questionsInsolite);
 console.log(questionsInsolite[0][1]);
 
 function start(themeChoice) {
+  turn = 0;
   answerEnabled();
   document.getElementById("question").innerHTML = themeChoice[0][0];
   document.getElementById("repA").innerHTML = themeChoice[0][1];
@@ -47,7 +47,27 @@ function start(themeChoice) {
 }
 
 function nextQuestion(themeChoice) {
-  console.log(themeChoice);
+
+  if (turn === 5) {
+    document.getElementById("question").innerHTML = "Quizz terminé !";
+    document.getElementById("repA").innerHTML = "";
+    document.getElementById("repB").innerHTML = "";
+    document.getElementById("repC").innerHTML = "";
+    document.getElementById("repD").innerHTML = "";
+    document.getElementById("A").className = "repBtn-A";
+    document.getElementById("B").className = "repBtn-B";
+    document.getElementById("C").className = "repBtn-C";
+    document.getElementById("D").className = "repBtn-D";
+    document.getElementById('culture-g-btn').onclick=function(){cultureG();};
+    document.getElementById('insolite-btn').onclick=function(){insolite();};
+    document.getElementById("insolite-btn").className = "theme";
+    document.getElementById("culture-g-btn").className = "theme";
+    document.getElementById("img-principale").innerHTML = '<img src="https://data.whicdn.com/images/326131140/original.gif" alt="gif bye">';
+    answerDisabled();
+    displayScore();
+    questionNb ++;
+    turn=0;
+  }
 
   document.getElementById("question").innerHTML = themeChoice[turn.valueOf()][0];
   document.getElementById("repA").innerHTML = themeChoice[turn.valueOf()][1];
@@ -61,6 +81,7 @@ function nextQuestion(themeChoice) {
   document.getElementById("D").className = "repBtn-D";
 
   answerEnabled();
+  questionNb++;
 }
 
 function joker() {
@@ -106,62 +127,72 @@ function clickChoiceD() {
 
 function answer(themeChoice) {
   correct = themeChoice[turn][5];
-  console.log("user :" + userChoice);
-  console.log("bonne rep " + correct);
+  console.log("question " + questionNb + themeChoice[0][1]);
 
   document.getElementById("play-btn").innerHTML = "Rejouer !";
 
-  if (userChoice === correct) {
+  if (themeChoice[1][1] === "20/20" && questionNb === 1) {
     document.getElementById("question").innerHTML = "Correct !";
     document.getElementById("img-principale").innerHTML = '<img src="https://media1.tenor.com/images/c999da20a6b3f9278cfc059c4313ed32/tenor.gif?itemid=14294403" alt="gif yes">';
 
-    switch (correct) {
-      case "A" :
-        document.getElementById("A").className = "green";
-        break;
-      case "B" :
-        document.getElementById("B").className = "green";
-        break;
-      case "C" :
-        document.getElementById("C").className = "green";
-        break;
-      case "D" :
-        document.getElementById("D").className = "green";
-        break;
-    }
-  } else {
-    document.getElementById("img-principale").innerHTML = '<img src="https://media3.giphy.com/media/2WxWfiavndgcM/giphy.gif" alt="gif yes">';
-    document.getElementById("question").innerHTML = "Perdu !";
-    document.getElementById('culture-g-btn').onclick=function(){cultureG();};
-    document.getElementById('insolite-btn').onclick=function(){insolite();};
-    document.getElementById("insolite-btn").className = "theme";
-    document.getElementById("culture-g-btn").className = "theme";
-    turn=0;
-    themeChoice = null;
+    document.getElementById("A").className = "green";
+    document.getElementById("B").className = "green";
+    document.getElementById("C").className = "green";
+    document.getElementById("D").className = "green";
+    } else {
+
+    if (userChoice === correct) {
+      document.getElementById("question").innerHTML = "Correct !";
+      document.getElementById("img-principale").innerHTML = '<img src="https://media1.tenor.com/images/c999da20a6b3f9278cfc059c4313ed32/tenor.gif?itemid=14294403" alt="gif yes">';
+
+      switch (correct) {
+        case "A" :
+          document.getElementById("A").className = "green";
+          break;
+        case "B" :
+          document.getElementById("B").className = "green";
+          break;
+        case "C" :
+          document.getElementById("C").className = "green";
+          break;
+        case "D" :
+          document.getElementById("D").className = "green";
+          break;
+      }
+    } else {
+      document.getElementById("img-principale").innerHTML = '<img src="https://media3.giphy.com/media/2WxWfiavndgcM/giphy.gif" alt="gif lost">';
+      document.getElementById("question").innerHTML = "Perdu !";
+      document.getElementById('culture-g-btn').onclick = function () {cultureG();};
+      document.getElementById('insolite-btn').onclick = function () {insolite();};
+      turn = 0;
+      questionNb =0;
+      themeChoice = null;
+      answerDisabled();
 
 
-    switch (correct) {
-      case "A" :
-        document.getElementById("A").className = "green";
-        break;
-      case "B" :
-        document.getElementById("B").className = "green";
-        break;
-      case "C" :
-        document.getElementById("C").className = "green";
-        break;
-      case "D" :
-        document.getElementById("D").className = "green";
-        break;
-    }
+      switch (correct) {
+        case "A" :
+          document.getElementById("A").className = "green";
+          break;
+        case "B" :
+          document.getElementById("B").className = "green";
+          break;
+        case "C" :
+          document.getElementById("C").className = "green";
+          break;
+        case "D" :
+          document.getElementById("D").className = "green";
+          break;
+      }
 
-    if (tableScore.length === 3) {
-      tableScore.shift();
+      if (tableScore.length === 3) {
+        tableScore.shift();
+      }
+      tableScore.push([entry, turn]);
+      argent();
+      displayScore();
+      turn = 0;
     }
-    tableScore.push([entry, turn]);
-    argent();
-    displayScore();
-    turn = 0;
   }
   answerDisabled();
   turn++;
@@ -175,6 +206,7 @@ function displayName() {
 function insolite() {
   themeChoice = questionsInsolite;
   document.getElementById("insolite-btn").className = "theme-selected";
+  document.getElementById("culture-g-btn").className = "theme";
   document.getElementById('culture-g-btn').onclick=function(){clickDisabled();};
   answerDisabled();
 }
@@ -182,6 +214,7 @@ function insolite() {
 function cultureG() {
   themeChoice = questionsCultureG;
   document.getElementById("culture-g-btn").className = "theme-selected";
+  document.getElementById("insolite-btn").className = "theme";
   document.getElementById('insolite-btn').onclick=function(){clickDisabled();};
   answerDisabled();
 }
@@ -202,6 +235,14 @@ function timer() {
     if(timeLeft < 0 ){
       clearInterval(myTimer);
       document.getElementById("time-btn").innerHTML = "Fini !";
+      document.getElementById("img-principale").innerHTML = '<img src="https://media0.giphy.com/media/lSnCC6CAMTRZRULBp0/giphy.gif" alt="gif too late">';
+      document.getElementById("question").innerHTML = "Perdu !";
+      document.getElementById('culture-g-btn').onclick=function(){cultureG();};
+      document.getElementById('insolite-btn').onclick=function(){insolite();};
+      document.getElementById("insolite-btn").className = "theme";
+      document.getElementById("culture-g-btn").className = "theme";
+      turn=0;
+      themeChoice = null;
     }
   }, 1000);
 }
