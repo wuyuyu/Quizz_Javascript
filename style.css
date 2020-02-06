@@ -167,7 +167,7 @@ body {
     margin-top: 26px;
 }
 
-.repBtn {
+.repBtn-A, .repBtn-B, .repBtn-C, .repBtn-D {
     height: 60px;
     width: 290px;
     display: inline-block ;
