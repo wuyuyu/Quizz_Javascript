@@ -12,7 +12,7 @@ const musiqueTime = new Audio("sounds/question.mp3");
 
 var questionsInsolite = [];
 questionsInsolite.push(["Quel est l'âge d'Arielle Dombasle ?", "113 ans", "Personne ne le sait", "66 ans", "La réponse D", "C"]);
-questionsInsolite.push(["question", "rep1", "test", "rep3", "test", "C"]);
+questionsInsolite.push(["Quel est l'aliment le plus drôle ?", "La pasthèque", "la saucisson", "Le miel", "Le riz", "D"]);
 questionsInsolite.push(["question", "rep1", "test", "rep3", "test", "C"]);
 questionsInsolite.push(["question", "rtd", "fhgdft", "rep3", "test", "C"]);
 questionsInsolite.push(["question", "rep1", "test", "rep3", "test", "C"]);
@@ -45,16 +45,18 @@ function start(themeChoice) {
 function nextQuestion(themeChoice) {
   turn++;
 
-  document.getElementById("question").innerHTML = themeChoice[0][turn];
-  document.getElementById("repA").innerHTML = themeChoice[0][turn];
-  document.getElementById("repB").innerHTML = themeChoice[0][turn];
-  document.getElementById("repC").innerHTML = themeChoice[0][turn];
-  document.getElementById("repD").innerHTML = themeChoice[0][turn];
+  document.getElementById("question").innerHTML = themeChoice[turn][1];
+  document.getElementById("repA").innerHTML = themeChoice[turn][2];
+  document.getElementById("repB").innerHTML = themeChoice[turn][3];
+  document.getElementById("repC").innerHTML = themeChoice[turn][4];
+  document.getElementById("repD").innerHTML = themeChoice[turn][5];
 
   document.getElementById("A").className = "repBtn-A";
   document.getElementById("B").className = "repBtn-B";
   document.getElementById("C").className = "repBtn-C";
   document.getElementById("D").className = "repBtn-D";
+
+  answerEnabled();
 }
 
 function joker() {
@@ -150,6 +152,7 @@ function answer(themeChoice) {
     displayScore();
     turn = 0;
   }
+  answerDisabled();
   turn++;
 }
 
@@ -160,10 +163,14 @@ function displayName() {
 
 function insolite() {
   themeChoice = questionsInsolite;
+  document.getElementById("insolite-btn").className = "theme-selected";
+  document.getElementById('culture-g-btn').onclick=function(){clickDisabled();};
 }
 
 function cultureG() {
   themeChoice = questionsCultureG;
+  document.getElementById("culture-g-btn").className = "theme-selected";
+  document.getElementById('insolite-btn').onclick=function(){clickDisabled();};
 }
 
 function timer() {
@@ -213,4 +220,22 @@ function argent() {
   argentRecolte = argentRecolte * 100;
   document.getElementById("nb-argent").innerHTML = argentRecolte + " €";
   console.log("argent gagné: " + argentRecolte);
+}
+
+function clickDisabled() {
+
+}
+
+function answerDisabled() {
+  document.getElementById('A').onclick=function(){clickDisabled();};
+  document.getElementById('B').onclick=function(){clickDisabled();};
+  document.getElementById('C').onclick=function(){clickDisabled();};
+  document.getElementById('D').onclick=function(){clickDisabled();};
+}
+
+function answerEnabled() {
+  document.getElementById('A').onclick=function(){clickChoiceA(); stopTimer(myTimer); answer(themeChoice);};
+  document.getElementById('B').onclick=function(){clickChoiceB(); stopTimer(myTimer); answer(themeChoice);};
+  document.getElementById('C').onclick=function(){clickChoiceC(); stopTimer(myTimer); answer(themeChoice);};
+  document.getElementById('D').onclick=function(){clickChoiceD(); stopTimer(myTimer); answer(themeChoice);};
 }
