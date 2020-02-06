@@ -25,6 +25,7 @@ function start(themeChoice) {
   document.getElementById("repD").innerHTML = themeChoice[0][4];
 }
 
+
 function clickChoiceA() {
   userChoice = "A";
 }
@@ -50,22 +51,21 @@ function answer(themeChoice) {
     document.getElementById("question").innerHTML = "Correct !";
   } else {
     document.getElementById("question").innerHTML = "Perdu !";
-    document.getElementById("C").color = "green";
-  }
 
-  switch (correct) {
-    case "A" :
-
-      break;
-    case "B" :
-
-      break;
-    case "C" :
-
-      break;
-    case "D" :
-
-      break;
+    switch (correct) {
+      case "A" :
+        document.getElementById("A").className = "green";
+        break;
+      case "B" :
+        document.getElementById("B").repbtn = "green";
+        break;
+      case "C" :
+        document.getElementById("C").repbtn = "green";
+        break;
+      case "D" :
+        document.getElementById("D").repbtn = "green";
+        break;
+    }
   }
 
   turn++;

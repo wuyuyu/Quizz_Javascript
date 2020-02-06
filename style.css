@@ -167,11 +167,11 @@ body {
     margin-top: 26px;
 }
 
-.rep-btn {
+.repBtn {
     height: 60px;
     width: 290px;
-    background-color: #174e92;
     display: inline-block ;
+    background-color: #174e92;
     margin-top: 25px;
     margin-left: 12px;
     margin-right: 12px;
@@ -184,10 +184,22 @@ body {
 }
 
 .green {
+    height: 60px;
+    width: 290px;
+    display: inline-block ;
     background-color: green;
+    margin-top: 25px;
+    margin-left: 12px;
+    margin-right: 12px;
+    border-radius: 5px;
+    border: 3px solid #ffffff;
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    outline: 0;
 }
 
-.rep-btn:hover {
+.repBtn:hover {
     background-color: #02000a;
 }
 
