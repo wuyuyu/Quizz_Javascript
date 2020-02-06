@@ -103,6 +103,8 @@ function answer(themeChoice) {
   console.log("user :" + userChoice);
   console.log("bonne rep " + correct);
 
+  document.getElementById("play-btn").innerHTML = "Rejouer !";
+
   if (userChoice === correct) {
     document.getElementById("question").innerHTML = "Correct !";
     document.getElementById("img-principale").innerHTML = '<img src="https://media1.tenor.com/images/c999da20a6b3f9278cfc059c4313ed32/tenor.gif?itemid=14294403" alt="gif yes">';
@@ -124,7 +126,6 @@ function answer(themeChoice) {
   } else {
     document.getElementById("img-principale").innerHTML = '<img src="https://media3.giphy.com/media/2WxWfiavndgcM/giphy.gif" alt="gif yes">';
     document.getElementById("question").innerHTML = "Perdu !";
-    document.getElementById("play-btn").innerHTML = "Rejouer !";
 
     switch (correct) {
       case "A" :
