@@ -6,3 +6,11 @@
 .idea/modules.xml
 
 *.xml
+
+imgs/yes.gif
+
+sounds/question.mp3
+
+sounds/.DS_Store
+
+.DS_Store
