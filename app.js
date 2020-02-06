@@ -5,6 +5,9 @@ var turn = 0;
 var userChoice;
 var correct;
 var entry;
+var score = 0; // nombre de bonne réponse
+var tableScore = []; //table de scores des derniers joueurs
+
 
 var questionsInsolite = [];
 questionsInsolite.push(["Quel est l'âge d'Arielle Dombasle ?", "113 ans", "Personne ne le sait", "66 ans", "La réponse D", "C"]);
@@ -50,8 +53,14 @@ function answer(themeChoice) {
   if (userChoice === correct) {
     document.getElementById("question").innerHTML = "Correct !";
     document.getElementById("img-principale").innerHTML = '<img src="https://media1.tenor.com/images/c999da20a6b3f9278cfc059c4313ed32/tenor.gif?itemid=14294403" alt="gif yes">';
+    score++;
+    tableScore.push([entry,score]);
+
   } else {
     document.getElementById("question").innerHTML = "Perdu !";
+    tableScore.push([entry,score]);
+    console.log("perdu");
+    displayScore();
 
     switch (correct) {
       case "A" :
@@ -106,3 +115,17 @@ function timer() {
 function joker() {
   document.getElementById("joker-btn").innerHTML='<i class="fas fa-phone-slash"></i>';
 }
+
+function displayScore(){
+      var html = '<div>';
+      for (let result of tableScore){
+        html += '<div>';
+        html += result[0];
+        html += ' / ';
+        html += result[1];
+        html += '</div>';
+      }
+      console.log(tableScore);
+      document.getElementById("historique").innerHTML = html;
+}
+
