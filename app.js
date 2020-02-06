@@ -4,7 +4,7 @@ var themeChoice = [];
 var turn = 0;
 var userChoice;
 var correct;
-const entry = document.getElementById('data').value;
+var entry = document.getElementById('data').value;
 var score = 0; // nombre de bonne réponse
 var tableScore = []; //table de scores des derniers joueurs
 var argentRecolte = 0;
@@ -12,7 +12,11 @@ var argentRecolte = 0;
 
 var questionsInsolite = [];
 questionsInsolite.push(["Quel est l'âge d'Arielle Dombasle ?", "113 ans", "Personne ne le sait", "66 ans", "La réponse D", "C"]);
-questionsInsolite.push(["question", "rep1", "test", "rep3", "test", "B"]);
+questionsInsolite.push(["question", "rep1", "test", "rep3", "test", "C"]);
+questionsInsolite.push(["question", "rep1", "test", "rep3", "test", "C"]);
+questionsInsolite.push(["question", "rtd", "fhgdft", "rep3", "test", "C"]);
+questionsInsolite.push(["question", "rep1", "test", "rep3", "test", "C"]);
+questionsInsolite.push(["questtryon", "rep1", "test", "rehdgf3", "test", "C"]);
 
 var questionsCultureG = [];
 questionsCultureG.push(["question culture ? ","Rep1","Rep2","Rep3","Rep4","A"]);
@@ -89,7 +93,7 @@ function answer(themeChoice) {
     tableScore.push([entry,score]);
     displayScore();
     argent();
-
+    score = 0;
   }
     switch (correct) {
       case "A" :
@@ -166,6 +170,7 @@ function joker() {
 }
 
 function displayScore(){
+      var t1 = tableScore.sort((a,b) => b[1] - a[0]);
       var html = '<div>';
       for (let result of tableScore){
         html += '<div>';
@@ -174,19 +179,20 @@ function displayScore(){
         html += result[1];
         html += '</div>';
       }
-      console.log(tableScore);
+      console.log(score); 
+      console.log("tir du score: " + t1);
       document.getElementById("historique").innerHTML = html;
+      document.getElementById("meilleur").innerHTML = t1;
+
 }
 
 function argent(){
-  console.log("fonction argent");
-  let i = 0;
-  if(i < score){
-    argentRecolte = (argentRecolte + (i+1));
-    i++;
+  let i;
+  for(i = 0; i < score; i++){
+    argentRecolte = (argentRecolte + (i+1)); 
   }
   argentRecolte = argentRecolte * 100;
   document.getElementById("nb-argent").innerHTML = argentRecolte + " €";
-  
+  console.log("argent gagné: " + argentRecolte); 
 }
 
