@@ -53,8 +53,6 @@ function start(themeChoice) {
 
 function nextQuestion(themeChoice) {
 
-  document.getElementById("img-principale").innerHTML = '<img src="imgs/jpf.jpg" alt="gif too late">';
-
   if (turn === 5) {
     musiqueApplause.play();
     document.getElementById("question").innerHTML = "Quizz terminé !";
@@ -74,7 +72,7 @@ function nextQuestion(themeChoice) {
     answerDisabled();
     displayScore();
     questionNb ++;
-    turn=0;
+
   }
 
   document.getElementById("question").innerHTML = themeChoice[turn.valueOf()][0];
