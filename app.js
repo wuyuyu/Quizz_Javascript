@@ -9,6 +9,7 @@ var tableScore = []; //table de scores des derniers joueurs
 var argentRecolte = 0;
 var jokerUsed = false;
 const musiqueTime = new Audio("sounds/question.mp3");
+const musiqueApplause = new Audio("sounds/applause.mp3");
 var questionNb = 0;
 
 var questionsInsolite = [];
@@ -29,8 +30,12 @@ console.log(questionsInsolite);
 console.log(questionsInsolite[0][1]);
 
 function start(themeChoice) {
+  document.getElementById("img-principale").innerHTML = '<img src="imgs/jpf.jpg" alt="gif too late">';
+
   turn = 0;
   answerEnabled();
+  musiqueApplause.pause();
+
   document.getElementById("question").innerHTML = themeChoice[0][0];
   document.getElementById("repA").innerHTML = themeChoice[0][1];
   document.getElementById("repB").innerHTML = themeChoice[0][2];
@@ -48,7 +53,10 @@ function start(themeChoice) {
 
 function nextQuestion(themeChoice) {
 
+  document.getElementById("img-principale").innerHTML = '<img src="imgs/jpf.jpg" alt="gif too late">';
+
   if (turn === 5) {
+    musiqueApplause.play();
     document.getElementById("question").innerHTML = "Quizz terminé !";
     document.getElementById("repA").innerHTML = "";
     document.getElementById("repB").innerHTML = "";
@@ -209,6 +217,7 @@ function insolite() {
   document.getElementById("culture-g-btn").className = "theme";
   document.getElementById('culture-g-btn').onclick=function(){clickDisabled();};
   answerDisabled();
+  musiqueApplause.pause();
 }
 
 function cultureG() {
@@ -217,6 +226,7 @@ function cultureG() {
   document.getElementById("insolite-btn").className = "theme";
   document.getElementById('insolite-btn').onclick=function(){clickDisabled();};
   answerDisabled();
+  musiqueApplause.pause();
 }
 
 function timer() {
