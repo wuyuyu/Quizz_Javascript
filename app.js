@@ -9,6 +9,7 @@ var tableScore = []; //table de scores des derniers joueurs
 var jokerUsed = false;
 const musiqueTime = new Audio("sounds/question.mp3");
 
+
 var questionsInsolite = [];
 questionsInsolite.push(["Quel est l'âge d'Arielle Dombasle ?", "113 ans", "Personne ne le sait", "66 ans", "La réponse D", "C"]);
 questionsInsolite.push(["Quel est l'aliment le plus drôle ?", "La pasthèque", "la saucisson", "Le miel", "Le riz", "D"]);
@@ -212,7 +213,14 @@ function stopTimer(timer) {
 }
 
 function displayScore() {
-  var t1 = tableScore.sort((a, b) => b[1] - a[0]);
+  tableScore.sort(function(a, b) {
+    if (a[1] == b[1]) {
+      return 0;
+    }
+    else {
+      return (a[1] > b[1]) ? -1 : 1;
+    }
+  });
   var html = '<div>';
   for (let result of tableScore) {
     html += '<div class="scoreDisplay">';
@@ -222,9 +230,7 @@ function displayScore() {
     html += '</div>';
   }
   console.log(turn);
-  console.log("tir du score: " + t1);
   document.getElementById("historique").innerHTML = html;
-  document.getElementById("meilleur").innerHTML = t1;
 
 }
 
