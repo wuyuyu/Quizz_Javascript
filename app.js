@@ -28,6 +28,10 @@ questionsCultureG.push(["Un gardien de nuit meurt le jour. Touche t-il une pensi
 console.log(questionsInsolite);
 console.log(questionsInsolite[0][1]);
 
+/**
+ * fonction qui initialise une nouvelle partie.
+ * @param themeChoice
+ */
 function start(themeChoice) {
   document.getElementById("img-principale").innerHTML = '<img src="imgs/jpf.jpg" alt="gif too late">';
 
@@ -35,21 +39,25 @@ function start(themeChoice) {
   answerEnabled();
   musiqueApplause.pause();
 
+  // affiche les questions et réponses //
   document.getElementById("question").innerHTML = themeChoice[0][0];
   document.getElementById("repA").innerHTML = themeChoice[0][1];
   document.getElementById("repB").innerHTML = themeChoice[0][2];
   document.getElementById("repC").innerHTML = themeChoice[0][3];
   document.getElementById("repD").innerHTML = themeChoice[0][4];
 
+  // affiche la couleur de base des boutons //
   document.getElementById("A").className = "repBtn-A";
   document.getElementById("B").className = "repBtn-B";
   document.getElementById("C").className = "repBtn-C";
   document.getElementById("D").className = "repBtn-D";
 
+  // affiche l'icone de base du bouton Joker //
   document.getElementById("joker-btn").innerHTML='<i class="fas fa-phone"></i>';
   jokerrEnabled();
   questionNb = 0;
 }
+
 
 function nextQuestion(themeChoice) {
 
