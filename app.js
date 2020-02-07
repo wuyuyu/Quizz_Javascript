@@ -6,7 +6,6 @@ var userChoice;
 var correct;
 var entry = document.getElementById('data').value;
 var tableScore = []; //table de scores des derniers joueurs
-var jokerUsed = false;
 const musiqueTime = new Audio("sounds/question.mp3");
 const musiqueApplause = new Audio("sounds/applause.mp3");
 var questionNb = 0;
@@ -48,7 +47,7 @@ function start(themeChoice) {
   document.getElementById("D").className = "repBtn-D";
 
   document.getElementById("joker-btn").innerHTML='<i class="fas fa-phone"></i>';
-  jokerUsed = false;
+  jokerrEnabled();
 }
 
 function nextQuestion(themeChoice) {
@@ -72,7 +71,6 @@ function nextQuestion(themeChoice) {
     answerDisabled();
     displayScore();
     questionNb ++;
-
   }
 
   document.getElementById("question").innerHTML = themeChoice[turn.valueOf()][0];
@@ -92,6 +90,7 @@ function nextQuestion(themeChoice) {
 
 function joker() {
   stopTimer(myTimer);
+  jokerrDisabled()
   document.getElementById("joker-btn").innerHTML = '<i class="fas fa-phone-slash"></i>';
   document.getElementById("question").innerHTML = "Correct !";
   document.getElementById("img-principale").innerHTML = '<img src="https://media1.tenor.com/images/c999da20a6b3f9278cfc059c4313ed32/tenor.gif?itemid=14294403" alt="gif yes">';
@@ -140,7 +139,6 @@ function answer(themeChoice) {
   if (themeChoice[1][1] === "20/20" && questionNb === 1) {
     document.getElementById("question").innerHTML = "Correct !";
     document.getElementById("img-principale").innerHTML = '<img src="https://media1.tenor.com/images/c999da20a6b3f9278cfc059c4313ed32/tenor.gif?itemid=14294403" alt="gif yes">';
-
     document.getElementById("A").className = "green";
     document.getElementById("B").className = "green";
     document.getElementById("C").className = "green";
@@ -316,4 +314,12 @@ function answerEnabled() {
   document.getElementById('B').onclick=function(){clickChoiceB(); stopTimer(myTimer); answer(themeChoice);};
   document.getElementById('C').onclick=function(){clickChoiceC(); stopTimer(myTimer); answer(themeChoice);};
   document.getElementById('D').onclick=function(){clickChoiceD(); stopTimer(myTimer); answer(themeChoice);};
+}
+
+function jokerrDisabled() {
+  document.getElementById('joker-btn').onclick=function(){clickDisabled();};
+}
+
+function jokerrEnabled() {
+  document.getElementById('joker-btn').onclick=function(){joker();;};
 }
