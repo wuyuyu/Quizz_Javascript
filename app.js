@@ -48,6 +48,7 @@ function start(themeChoice) {
 
   document.getElementById("joker-btn").innerHTML='<i class="fas fa-phone"></i>';
   jokerrEnabled();
+  questionNb = 0;
 }
 
 function nextQuestion(themeChoice) {
@@ -70,6 +71,8 @@ function nextQuestion(themeChoice) {
     document.getElementById("img-principale").innerHTML = '<img src="https://data.whicdn.com/images/326131140/original.gif" alt="gif bye">';
     answerDisabled();
     displayScore();
+    tableScore.push([entry,turn]);
+    displayScore();
     questionNb ++;
   }
 
@@ -90,7 +93,8 @@ function nextQuestion(themeChoice) {
 
 function joker() {
   stopTimer(myTimer);
-  jokerrDisabled()
+  jokerrDisabled();
+  answerDisabled();
   document.getElementById("joker-btn").innerHTML = '<i class="fas fa-phone-slash"></i>';
   document.getElementById("question").innerHTML = "Correct !";
   document.getElementById("img-principale").innerHTML = '<img src="https://media1.tenor.com/images/c999da20a6b3f9278cfc059c4313ed32/tenor.gif?itemid=14294403" alt="gif yes">';
@@ -110,7 +114,6 @@ function joker() {
       document.getElementById("D").className = "green";
       break;
   }
-  jokerUsed = true;
   turn++;
 }
 
@@ -253,6 +256,10 @@ function timer() {
       document.getElementById('insolite-btn').onclick=function(){insolite();};
       document.getElementById("insolite-btn").className = "theme";
       document.getElementById("culture-g-btn").className = "theme";
+      argent();
+      document.getElementById("nb-question").innerHTML = turn;
+      tableScore.push([entry,turn]);
+      displayScore();
       turn=0;
       themeChoice = null;
     }
