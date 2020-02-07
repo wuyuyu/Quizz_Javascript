@@ -6,11 +6,11 @@ var userChoice;
 var correct;
 var entry = document.getElementById('data').value;
 var tableScore = []; //table de scores des derniers joueurs
-var argentRecolte = 0;
 var jokerUsed = false;
 const musiqueTime = new Audio("sounds/question.mp3");
 const musiqueApplause = new Audio("sounds/applause.mp3");
 var questionNb = 0;
+
 
 var questionsInsolite = [];
 questionsInsolite.push(["Quel est l'âge d'Arielle Dombasle ?", "113 ans", "Personne ne le sait", "66 ans", "La réponse D", "C"]);
@@ -147,9 +147,13 @@ function answer(themeChoice) {
     document.getElementById("B").className = "green";
     document.getElementById("C").className = "green";
     document.getElementById("D").className = "green";
+    turn ++;
+    argent();
+    document.getElementById("nb-question").innerHTML = turn;
     } else {
 
     if (userChoice === correct) {
+
       document.getElementById("question").innerHTML = "Correct !";
       document.getElementById("img-principale").innerHTML = '<img src="https://media1.tenor.com/images/c999da20a6b3f9278cfc059c4313ed32/tenor.gif?itemid=14294403" alt="gif yes">';
 
@@ -167,12 +171,14 @@ function answer(themeChoice) {
           document.getElementById("D").className = "green";
           break;
       }
+      turn++;
+      argent();
+      document.getElementById("nb-question").innerHTML = turn;
     } else {
       document.getElementById("img-principale").innerHTML = '<img src="https://media3.giphy.com/media/2WxWfiavndgcM/giphy.gif" alt="gif lost">';
       document.getElementById("question").innerHTML = "Perdu !";
       document.getElementById('culture-g-btn').onclick = function () {cultureG();};
       document.getElementById('insolite-btn').onclick = function () {insolite();};
-      turn = 0;
       questionNb =0;
       themeChoice = null;
       answerDisabled();
@@ -203,12 +209,12 @@ function answer(themeChoice) {
     }
   }
   answerDisabled();
-  turn++;
 }
 
 function displayName() {
   entry = document.getElementById('data').value;
   document.getElementById("name").innerHTML=entry;
+  turn = 0;
 }
 
 function insolite() {
@@ -264,7 +270,14 @@ function stopTimer(timer) {
 }
 
 function displayScore() {
-  var t1 = tableScore.sort((a, b) => b[1] - a[0]);
+  tableScore.sort(function(a, b) {
+    if (a[1] == b[1]) {
+      return 0;
+    }
+    else {
+      return (a[1] > b[1]) ? -1 : 1;
+    }
+  });
   var html = '<div>';
   for (let result of tableScore) {
     html += '<div class="scoreDisplay">';
@@ -274,14 +287,13 @@ function displayScore() {
     html += '</div>';
   }
   console.log(turn);
-  console.log("tir du score: " + t1);
   document.getElementById("historique").innerHTML = html;
-  document.getElementById("meilleur").innerHTML = t1;
 
 }
 
 function argent() {
   let i;
+  let argentRecolte = 0;
   for (i = 0; i < turn; i++) {
     argentRecolte = (argentRecolte + (i + 1));
   }
